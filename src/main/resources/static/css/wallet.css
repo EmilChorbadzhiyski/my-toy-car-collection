@@ -1,0 +1,112 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: url('../images/home-page.jpg') no-repeat center center/cover;
+}
+
+.wallet-card {
+    background: rgba(0, 0, 0, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    padding: 20px 30px;
+    width: 400px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.wallet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.wallet-title {
+    font-size: 24px;
+    font-weight: 500;
+    color: white;
+}
+
+.wallet-detail {
+    margin-top: 10px;
+}
+
+.wallet-detail p {
+    font-size: 16px;
+    color: white;
+    margin: 8px 0;
+}
+
+.wallet-buttons {
+    background: rgba(0, 0, 0, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    width: 400px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.button-container {
+    width: 100%;
+    display: grid;
+    justify-content: center;
+    gap: 50px;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 8px;
+    border: none;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 50px;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border: none;
+    color: white;
+    width: 100%;
+}
+
+.btn-info {
+    background-color: green;
+}
+
+.btn-info:hover {
+    background-color: darkgreen;
+}
+
+.btn-back {
+    background-color: #f3f4f6;
+    color: #000 !important;
+    width: auto;
+    padding: 8px 16px;
+    font-size: 14px;
+}
+
+.btn-back:hover {
+    background-color: #d1d5db;
+}

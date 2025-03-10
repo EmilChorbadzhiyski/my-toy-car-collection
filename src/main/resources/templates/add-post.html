@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Story</title>
+    <link rel="stylesheet" th:href="@{/css/add-post.css}">
+</head>
+<body>
+<main>
+    <section class="section full-height">
+
+        <form class="welcome login" th:method="POST" th:action="@{/post/add}" th:object="${createNewPost}">
+
+            <h3>Add post</h3>
+
+            <div class="form-group">
+                <div class="label-holder text-white d-flex justify-content-center">
+                    <label for="title" class="h3 mb-2">Title</label>
+                </div>
+                <input type="text" placeholder="Title" id="title" name="title" th:field="*{title}">
+                <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-warning">Error Text Here</p>
+            </div>
+
+            <div class="form-group">
+                <div class="label-holder text-white d-flex justify-content-center">
+                    <label for="description" class="h3 mb-2">Description</label>
+                </div>
+                <textarea placeholder="Description" id="description" name="description"
+                          th:field="*{description}"></textarea>
+                <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-warning">Error
+                    Text Here</p>
+            </div>
+            <div class="wallet-buttons">
+                <div class="button-container">
+                    <button type="submit" class="btn btn-info mb-3">Add Post</button>
+                    <a href="/post" class="btn btn-info mb-3 btn-back" style="color: black !important;">Back</a>
+                </div>
+            </div>
+        </form>
+    </section>
+</main>
+<footer class="section section-footer">
+    <div class="wrapper">
+        <p>© 2025 My Toy Car Collection. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

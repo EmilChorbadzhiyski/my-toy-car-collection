@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <link rel="stylesheet" th:href="@{/css/post.css}">
+</head>
+<body>
+<header class="section site-header">
+    <div class="wrapper wide">
+        <nav class="main-nav">
+            <ul>
+                <li><a th:href="@{/shop}">Shop</a></li>
+                <li><a th:href="@{/user}">My Profile</a></li>
+                <li><a th:href="@{/post}">Blog</a></li>
+                <li><a th:href="@{/subscription}">Subscriptions</a></li>
+                <li><a th:href="@{/privacy-policy}">Privacy Policy</a></li>
+                <li><a th:href="@{/contacts}">Contact Us</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<div class="home-container">
+
+    <div class="my-post-section">
+        <div class="home-section">
+            <h3 class="my-stories">My Posts</h3>
+            <div class="buttons">
+                <a th:href="@{/post/add}"><button class="add-button">Add Post</button></a>
+            </div>
+            <ul>
+                <li th:each="post : ${user.posts}">
+                    <div class="my-stories-first-row">
+                        <div class="story-info">
+                            <p>Title: <span th:text="${post.title}">Post Title</span></p>
+                        </div>
+                        <div class="buttons">
+                            <form th:action="@{/post/{id}(id=${post.id})}" th:method="DELETE">
+                                <button class="delete-button">Remove</button>
+                            </form>
+                            <form th:action="@{/post/{id}/visibility(id=${post.id})}" th:method="POST">
+                                <button type="submit" class="share-button" th:disabled="${post.isVisible()}">Share</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="second-info">
+                        <section>Description: <span th:text="${post.description}">Description text here</span></section>
+                    </div>
+                </li>
+                <li th:if="${#lists.isEmpty(user.posts)}">
+                    <p>No posts available.</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="News-feeds-section">
+        <div class="home-section">
+            <h3 class="my-stories">News feeds</h3>
+            <ul>
+                <li th:each="post : ${allSharedPosts}">
+                    <div class="story-board">
+                        <div class="single-story">
+                            <h5>Title: <span th:text="${post.title}"></span></h5>
+                            <h5>Added by: <span th:text="${post.owner.username}"></span> on <span th:text="${post.date}"></span></h5>
+                        </div>
+                        <p>
+                            <a th:href="@{/post/{id}(id=${post.id})}">
+                                <button>Read</button>
+                            </a>
+                        </p>
+                    </div>
+                </li>
+                <li th:if="${#lists.isEmpty(allSharedPosts)}">
+                    <p>No news feeds available.</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<footer class="section section-footer">
+    <div class="wrapper">
+        <p>© 2025 My Toy Car Collection. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+
+</html>

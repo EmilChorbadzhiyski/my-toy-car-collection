@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Car</title>
+    <link rel="stylesheet" th:href="@{/css/add-car.css}">
+</head>
+<body>
+
+<main>
+    <form class="welcome add-offer-form" th:method="POST" th:action="@{/user/new}" th:object="${createCarRequest}">
+
+        <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Add Car</span></h1>
+
+        <input type="hidden" th:field="*{ownerId}"/>
+
+
+        <div class="form-group">
+            <label for="type" class="h4 mb-2 text-white text-center d-block">Type</label>
+            <select class="custom-select" id="type" name="type" th:field="*{type}">
+                <option value="" disabled selected>Select Type</option>
+                <option th:each="type : ${T(app.car.model.CarType).values()}" th:value="${type}"
+                        th:text="${type}"></option>
+            </select>
+            <small th:if="${#fields.hasErrors('type')}" th:errors="*{type}" class="text-danger">Error Here</small>
+        </div>
+
+        <div class="form-group">
+            <label for="brand" class="h4 mb-2 text-white text-center d-block">Brand</label>
+            <input type="text" class="form-control" id="brand" name="brand" th:field="*{brand}"
+                   placeholder="Enter car model"/>
+            <small th:if="${#fields.hasErrors('brand')}" th:errors="*{brand}" class="text-danger">Error Here</small>
+        </div>
+
+        <div class="form-group">
+            <label for="model" class="h4 mb-2 text-white text-center d-block">Model</label>
+            <input type="text" class="form-control" id="model" name="model" th:field="*{model}"
+                   placeholder="Enter car model"/>
+            <small th:if="${#fields.hasErrors('model')}" th:errors="*{model}" class="text-danger">Error Here</small>
+        </div>
+
+        <div class="form-group">
+            <label for="year" class="h4 mb-2 text-white text-center d-block">Year</label>
+            <input type="text" class="form-control" id="year" name="year" th:field="*{year}"
+                   placeholder="Enter car year"/>
+            <small th:if="${#fields.hasErrors('year')}" th:errors="*{year}" class="text-danger">Error Here</small>
+        </div>
+
+        <div class="form-group">
+            <label for="numberOfDoors" class="h4 mb-2 text-white text-center d-block">Number of Doors</label>
+            <input type="text" class="form-control" id="numberOfDoors" name="numberOfDoors" th:field="*{numberOfDoors}"
+                   placeholder="e.g. 4"/>
+
+            <small th:if="${#fields.hasErrors('numberOfDoors')}" th:errors="*{numberOfDoors}" class="text-danger">Error
+                Here</small>
+        </div>
+
+        <div class="form-group">
+            <label for="countryOfOrigin" class="h4 mb-2 text-white text-center d-block">Country of Origin</label>
+            <select class="custom-select" id="countryOfOrigin" name="countryOfOrigin" th:field="*{countryOfOrigin}">
+                <option th:each="country : ${T(app.car.model.CarOrigin).values()}" th:value="${country}"
+                        th:text="${country}"></option>
+            </select>
+            <small th:if="${#fields.hasErrors('countryOfOrigin')}" th:errors="*{countryOfOrigin}" class="text-danger">Error
+                Here</small>
+        </div>
+
+        <div class="form-group">
+            <label for="color" class="h4 mb-2 text-white text-center d-block">Color</label>
+            <input type="text" class="form-control" id="color" name="color" th:field="*{color}"
+                   placeholder="Enter car color"/>
+            <small th:if="${#fields.hasErrors('color')}" th:errors="*{color}" class="text-danger">Error Here</small>
+        </div>
+
+        <div class="form-group">
+            <label for="price" class="h4 mb-2 text-white text-center d-block">Price</label>
+            <input type="text" class="form-control" id="price" name="price" th:field="*{price}"
+                   placeholder="Enter car price"/>
+            <small th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="text-danger">Error Here</small>
+        </div>
+
+        <div class="form-group">
+            <label for="pictureUrl" class="h4 mb-2 text-white text-center d-block">Picture URL</label>
+            <input type="url" class="form-control" id="pictureUrl" name="pictureUrl" th:field="*{pictureUrl}"
+                   placeholder="Paste your URL here"/>
+            <small th:if="${#fields.hasErrors('pictureUrl')}" th:errors="*{pictureUrl}" class="text-danger">Error
+                Here</small>
+        </div>
+
+        <div class="wallet-buttons">
+            <div class="button-container">
+                <button type="submit" class="btn btn-info mb-3">Add Car</button>
+                <a href="/user" class="btn btn-info mb-3 btn-back" style="color: black !important;">Back</a>
+            </div>
+        </div>
+    </form>
+</main>
+</body>
+</html>

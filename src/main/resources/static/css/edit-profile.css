@@ -1,0 +1,141 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-image: url("../images/home-page.jpg");
+    background-size: 100% 100%;
+    background-position: center;
+}
+
+.home-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.single-section-box.profile-menu {
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 800px;
+    color: white;
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-picture {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.profile-name {
+    font-size: 24px;
+    font-weight: 500;
+    color: #fff;
+}
+
+.details-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.details-section-container {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.details-section-container strong {
+    font-weight: bold;
+    color: #fff;
+}
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    margin-top: 16px;
+    font-size: 14px;
+    font-weight: 300;
+    text-align: left;
+    width: 100%;
+    max-width: 60%;
+    color: #fff;
+}
+
+input {
+    display: block;
+    height: 45px;
+    width: 60%;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    padding: 0 12px;
+    margin-top: 6px;
+    font-size: 14px;
+    font-weight: 300;
+    color: #fff; /* White text for input */
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus {
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.6);
+}
+
+button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    display: inline-flex;
+    align-items: center;
+}
+
+button svg {
+    margin-left: 8px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.footer {
+    padding: 10px;
+    text-align: center;
+    color: white;
+    position: relative;
+    width: 100%;
+    margin-top: auto;
+}

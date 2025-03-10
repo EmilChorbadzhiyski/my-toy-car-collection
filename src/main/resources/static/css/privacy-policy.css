@@ -1,0 +1,126 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: url('../images/home-page.jpg') no-repeat center center/cover;
+    color: #333;
+    line-height: 1.6;
+    padding-top: 60px;
+}
+
+.main-nav {
+    background-color: #333;
+    padding: 10px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    width: 100%;
+    background-color: rgba(51, 51, 51, 0.9);
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
+
+.main-nav li {
+    margin: 0 15px;
+}
+
+.main-nav a {
+    color: #eee;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.main-nav a:hover {
+    background-color: #555;
+    color: #fff;
+}
+
+.main-nav a.active,
+.main-nav a:active {
+    background-color: #007bff;
+    color: #fff;
+}
+
+main {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 1100px;
+    margin: 30px auto;
+}
+
+/* Title */
+h1 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+/* Sections */
+h2 {
+    font-size: 24px;
+    color: white;
+    margin: 20px 0 10px;
+}
+
+h3 {
+    font-size: 20px;
+    margin: 15px 0 8px;
+    color: white;
+}
+
+p, ul {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: white;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.privacy-policy {
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.footer {
+    text-align: center;
+    font-size: 14px;
+    color: white;
+    margin-top: 40px;
+}
+
+.footer a {
+    color: #007bff;
+    text-decoration: none;
+}

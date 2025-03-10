@@ -1,0 +1,214 @@
+body {
+    font-family: sans-serif;
+    background: url('../images/home-page.jpg') no-repeat center center/cover;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    color: #fff;
+}
+
+.site-header {
+    background-color: #333;
+    border-bottom: 1px solid #333;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    width: 100%;
+}
+
+.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.main-nav {
+    background-color: transparent;
+    padding: 10px 0;
+    width: 100%;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.main-nav li {
+    margin: 0 15px;
+}
+
+.main-nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.main-nav a:hover {
+    background-color: #ddd;
+    color: #333;
+}
+
+.main-nav a.active,
+.main-nav a:active {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.home-container {
+    flex: 1;
+    width: 80%;
+    max-width: 1200px;
+    margin: 70px auto 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+}
+
+.home-section {
+    margin-bottom: 20px;
+}
+
+.my-stories {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}
+
+.my-post-section ul,
+.News-feeds-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.my-post-section li,
+.News-feeds-section li {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.my-post-section li:hover,
+.News-feeds-section li:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    cursor: pointer;
+}
+
+.my-post-section {
+    flex: 1;
+    margin-right: 200px;
+}
+
+.News-feeds-section {
+    flex: 1;
+}
+
+.my-stories-first-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.story-info p {
+    margin: 5px 0;
+}
+
+.story-info span {
+    font-weight: bold;
+}
+
+.buttons {
+    display: flex;
+}
+
+.buttons button {
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 5px;
+    color: white;
+    border: none;
+}
+
+.delete-button {
+    background-color: red;
+}
+
+.delete-button:hover {
+    background-color: darkred;
+}
+
+.share-button {
+    background-color: green;
+}
+
+.share-button:hover {
+    background-color: darkgreen;
+}
+
+.second-info section {
+    margin-top: 10px;
+}
+
+.story-board {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.single-story h5 {
+    margin: 5px 0;
+}
+
+.single-story span {
+    font-weight: bold;
+}
+
+.story-board button {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.story-board button:hover {
+    background-color: darkgreen;
+}
+
+.add-button {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.3em;
+    width: 23em;
+
+}
+
+.add-button:hover {
+    background-color: darkgreen;
+}
+
+footer {
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}

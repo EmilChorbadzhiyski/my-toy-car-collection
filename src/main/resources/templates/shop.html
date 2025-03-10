@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Shop</title>
+    <link rel="stylesheet" th:href="@{/css/shop.css}">
+</head>
+<body>
+
+<header class="section site-header">
+    <div class="wrapper wide">
+        <nav class="main-nav">
+            <ul>
+                <li><a th:href="@{/shop}">Shop</a></li>
+                <li><a th:href="@{/user}">My Profile</a></li>
+                <li><a th:href="@{/post}">Blog</a></li>
+                <li><a th:href="@{/subscription}">Subscriptions</a></li>
+                <li><a th:href="@{/privacy-policy}">Privacy Policy</a></li>
+                <li><a th:href="@{/contacts}">Contact Us</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section class="section section-banner">
+        <div class="wrapper">
+            <h2>Welcome to Toy Car Collection App</h2>
+            <section class="section section-about">
+                <div class="wrapper">
+                    <header>
+                        <h3>ABOUT US</h3>
+                        <p>Welcome to Toy Car Collection App, the ultimate app for toy car enthusiasts! Whether you're a lifelong collector or just starting your journey, our app is designed to help you organize, showcase, and grow your toy car collection with ease.
+
+                            Our mission is to create a vibrant community where collectors can track their cars, discover rare models, and share their passion with others. With powerful features like inventory management, wishlist creation, and collection insights, Toy Car Collection App makes collecting more fun and organized than ever before.
+
+                            Driven by a love for miniature cars and the stories they hold, we're here to celebrate every car in your collection — from vintage classics to the latest limited editions.
+                        </p>
+                    </header>
+                    <p>Join us on this journey and let’s build the ultimate toy car collection, one model at a time!</p>
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <section class="section section-catalog">
+        <div class="wrapper">
+            <header>
+                <h3>Catalog</h3>
+                <p>Choose a car from the selection.</p>
+            </header>
+            <div class="flex-columns c4" th:if="${#lists.size(cars) > 0}">
+                <div class="car-card" th:each="car : ${cars}">
+                    <div class="car-image-container">
+                        <img th:src="@{${car.imageUrl}}" class="car-image" alt="Car Image">
+                    </div>
+
+                    <div class="car-info">
+                        <p>Type: <span th:text="${car.type}"></span></p>
+                        <p>Brand: <span th:text="${car.brand}"></span></p>
+                        <p>Model: <span th:text="${car.model}"></span></p>
+                        <p>Year: <span th:text="${car.year}"></span></p>
+                        <p>Number of Doors: <span th:text="${car.numberOfDoors}"></span></p>
+                        <p>Country of Origin: <span th:text="${car.countryOfOrigin}"></span></p>
+                        <p>Color: <span th:text="${car.color}"></span></p>
+                        <p>Owner: <span th:text="${car.owner.username}"></span></p>
+                        <p><strong>Price:</strong> <span th:text="${car.price}"></span></p>
+                        <form th:action="@{/shop/buy/{carId}(carId=${car.id})}" method="POST">
+                            <button class="buy-button" type="submit">Buy Now</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <p class="no-cars-message" th:if="${#lists.isEmpty(cars)}">No cars available for purchase.</p>
+        </div>
+    </section>
+</main>
+
+<footer class="section section-footer">
+    <div class="wrapper">
+        <p>© 2025 My Toy Car Collection. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>

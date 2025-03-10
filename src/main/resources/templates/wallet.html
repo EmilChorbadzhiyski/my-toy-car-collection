@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallet Details</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/wallet.css">
+</head>
+<body>
+<div class="wallet-card">
+    <div class="wallet-header">
+        <h1 class="wallet-title">Wallet Details</h1>
+
+    </div>
+    <div class="wallet-detail">
+        <p><strong>Balance::</strong> <span th:text="'$' + ${wallet.get().balance}"></span></p>
+        <p><strong>Owner:</strong> <span th:text="${wallet.get().owner.username}"></span></p>
+        <p><strong>Created On:</strong> <span
+                th:text="${#temporals.format(wallet.get().createdOn, 'yyyy-MM-dd HH:mm ')}"></span></p>
+        <p><strong>Updated On:</strong> <span
+                th:text="${#temporals.format(wallet.get().updatedOn, 'yyyy-MM-dd HH:mm ')}"></span>
+        </p>
+        <a href="/user" class="btn btn-info mb-3 btn-back" style="color: black !important;">Go back to profile</a>
+    </div>
+</div>
+
+<div class="wallet-buttons">
+    <div class="button-container">
+
+        <form th:action="@{/wallet/add-money}" method="post">
+            <input type="number" id="amount" name="amount" placeholder="Enter amount" required />
+            <button type="submit" class="btn btn-info mb-3">Add Money</button>
+        </form>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile</title>
+    <link rel="stylesheet" th:href="@{/css/user.css}">
+</head>
+<body>
+
+<header class="section site-header">
+    <div class="wrapper wide">
+        <nav class="main-nav">
+            <ul>
+                <li><a th:href="@{/shop}">Shop</a></li>
+                <li><a th:href="@{/user}">My Profile</a></li>
+                <li><a th:href="@{/post}">Blog</a></li>
+                <li><a th:href="@{/subscription}">Subscriptions</a></li>
+                <li><a th:href="@{/privacy-policy}">Privacy Policy</a></li>
+                <li><a th:href="@{/contacts}">Contact Us</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main class="main-content">
+    <section class="profile-header">
+        <img th:src="${#strings.isEmpty(user.profilePicture) ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRH87TKQrWcl19xly2VNs0CjBzy8eaKNM-ZpA&s' : user.profilePicture}"
+             class="profile-picture" alt="Profile picture of ${user.username}">
+        <h1 th:text="${user.username}">User Name</h1>
+        <p><strong>User ID:</strong> <span th:text="${user.id}">UUID_PLACEHOLDER</span></p>
+
+        <div class="user-details">
+            <p><strong>First Name:</strong> <span
+                    th:text="${#strings.isEmpty(user.firstName) ? 'Edit your profile and add your first name.' : user.firstName}"></span>
+            </p>
+            <p><strong>Last Name:</strong> <span
+                    th:text="${#strings.isEmpty(user.lastName) ? 'Edit your profile and add your last name.' : user.lastName}"></span>
+            </p>
+            <p><strong>Email:</strong> <span
+                    th:text="${#strings.isEmpty(user.email) ? 'Edit your profile and add your e-mail.' : user.email}"></span>
+            </p>
+            <p><strong>Joined:</strong> <span
+                    th:text="${#temporals.format(user.createdOn, 'dd MMM yyyy HH:mm')}"></span></p>
+            <p><strong>Country:</strong> <span
+                    th:text="${#strings.capitalize(#strings.toLowerCase(user.country))}"></span></p>
+        </div>
+
+        <div class="profile-buttons">
+            <a th:href="@{/user/new}">
+                <button>Add Car</button>
+            </a>
+            <a th:href="@{/wallet}">
+                <button>Wallet</button>
+            </a>
+            <a th:href="@{/transactions}">
+                <button>Transactions</button>
+            </a>
+            <a th:href="@{'/user/' + ${user.id} + '/edit-profile'}" th:if="${user.id != null}">
+                <button>Edit Profile</button>
+            </a>
+            <a th:href="@{/logout}">
+                <button type="button">Log Out</button>
+            </a>
+        </div>
+    </section>
+
+    <section class="section section-catalog">
+        <div class="wrapper">
+            <header>
+                <h3>My Car Collection</h3>
+            </header>
+
+            <div class="car-gallery" th:if="${#lists.size(user.cars) > 0}">
+                <div th:each="car : ${user.cars}" class="car-card">
+                    <div class="car-image-container">
+                        <img th:src="@{${car.imageUrl}}" class="car-image" alt="Car Image">
+                    </div>
+
+                    <div class="car-info">
+                        <p><strong>Type:</strong> <span th:text="${car.type}"></span></p>
+                        <p><strong>Brand:</strong> <span th:text="${car.brand}"></span></p>
+                        <p><strong>Model:</strong> <span th:text="${car.model}"></span></p>
+                        <p><strong>Year:</strong> <span th:text="${car.year}"></span></p>
+                        <p><strong>Number of Doors:</strong> <span th:text="${car.numberOfDoors}"></span></p>
+                        <p><strong>Country of Origin:</strong> <span th:text="${car.countryOfOrigin}"></span></p>
+                        <p><strong>Color:</strong> <span th:text="${car.color}"></span></p>
+                        <p><strong>Price:</strong> <span th:text="${car.price}"></span></p>
+
+                        <form th:action="@{/user/car/{id}/delete(id=${car.id})}" method="post">
+                            <input type="hidden" name="_method" value="delete"/>
+                            <button type="submit">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <p class="no-cars-message" th:if="${#lists.isEmpty(user.cars)}">You haven't added any cars yet.</p>
+        </div>
+    </section>
+</main>
+
+<footer class="section section-footer">
+    <div class="wrapper">
+        <p>© 2025 My Toy Car Collection. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>
