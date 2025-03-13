@@ -1,0 +1,27 @@
+<!-- internal-server-error.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+    <link rel="stylesheet" href="/css/internal-server-error.css">
+</head>
+<body>
+<div class="container">
+    <h1>Oops! Something went wrong on our end.</h1>
+    <p>If you need any assistance or have questions, our dedicated support team is here to provide expert help. Don't hesitate to reach out!</p>
+
+    <div class="error-details">
+        <strong>Error Code: </strong>
+        <p>500 Internal Server Error</p>
+    </div>
+
+    <div class="error-details">
+        <strong>Additional Message: </strong>
+        <p th:text="${errorMessage != null ? errorMessage : 'An unexpected error occurred'}"></p>
+    </div>
+
+    <a href="/login" class="back-button">Go Back</a>
+</div>
+</body>
+</html>

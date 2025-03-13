@@ -43,7 +43,7 @@ public class IndexController {
     public String login(@Valid LoginRequest loginRequest, BindingResult bindingResult, HttpSession session) {
 
         if (bindingResult.hasErrors()) {
-            return "login";
+            return "internal-server-error";
         }
         User loggedInUser = userService.login(loginRequest);
         session.setAttribute("user", loggedInUser);
@@ -64,7 +64,7 @@ public class IndexController {
     public ModelAndView registerNewUser(@Valid RegisterRequest registerRequest, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
-            return new ModelAndView("register");
+            return new ModelAndView("internal-server-error");
         }
 
         userService.register(registerRequest);
