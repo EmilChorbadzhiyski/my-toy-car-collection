@@ -4,7 +4,6 @@ package app.web;
 import app.exeptions.LoginFailedException;
 import app.exeptions.PasswordValidationException;
 import app.exeptions.UsernameAlreadyExistException;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MissingRequestValueException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -15,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
-import javax.security.auth.login.LoginException;
 import java.nio.file.AccessDeniedException;
 
 @ControllerAdvice

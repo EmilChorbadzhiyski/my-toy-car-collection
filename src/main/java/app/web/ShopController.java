@@ -2,11 +2,12 @@ package app.web;
 
 import app.car.model.Car;
 import app.car.service.CarService;
+import app.security.AuthenticationMetadata;
 import app.transaction.service.TransactionService;
 import app.user.model.User;
 import app.user.service.UserService;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,8 +36,8 @@ public class ShopController {
     }
 
     @GetMapping
-    public ModelAndView getShopPage(HttpSession session) {
-        User user = (User) session.getAttribute("user");
+    public ModelAndView getShopPage(@AuthenticationPrincipal AuthenticationMetadata authenticationMetadata) {
+        User user = userService.getById(authenticationMetadata.getUserId());
 
         if (user == null) {
             return new ModelAndView("redirect:/login");
@@ -59,17 +60,18 @@ public class ShopController {
     }
 
     @PostMapping("/buy/{carId}")
-    public String buyCar(@PathVariable UUID carId, HttpSession session) {
-        User user = (User) session.getAttribute("user");
+    public String buyCar(@AuthenticationPrincipal AuthenticationMetadata authenticationMetadata,
+                         @PathVariable UUID carId) {
+        User user = userService.getById(authenticationMetadata.getUserId());
 
         if (user == null) {
             return "redirect:/login";
         }
+
         carService.buyCar(carId, user);
         User updatedUser = userService.getById(user.getId());
         updatedUser.setCars(carService.getAllCarsForUser(updatedUser));
         updatedUser.setTransactions(transactionService.getTransactionsForUser(updatedUser));
-        session.setAttribute("user", updatedUser);
 
         return "redirect:/shop";
     }

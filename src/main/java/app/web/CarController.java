@@ -1,6 +1,7 @@
 package app.web;
 
 import app.car.service.CarService;
+import app.security.AuthenticationMetadata;
 import app.user.model.User;
 import app.user.service.UserService;
 import app.web.dto.CreateCarRequest;
@@ -9,6 +10,7 @@ import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -31,8 +33,8 @@ public class CarController {
     }
 
     @GetMapping("/new")
-    public ModelAndView getNewCarForm(HttpSession session) {
-        User user = (User) session.getAttribute("user");
+    public ModelAndView getNewCarForm(@AuthenticationPrincipal AuthenticationMetadata authenticationMetadata) {
+        User user = userService.getById(authenticationMetadata.getUserId());
 
         if (user == null) {
             return new ModelAndView("redirect:/login");
@@ -47,29 +49,28 @@ public class CarController {
     }
 
     @PostMapping("/new")
-    public String createNewCar(@Valid CreateCarRequest createCarRequest, BindingResult bindingResult, HttpSession session) {
+    public String createNewCar(
+            @AuthenticationPrincipal AuthenticationMetadata authenticationMetadata,
+            @Valid CreateCarRequest createCarRequest,
+            BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             return "add-car";
         }
-        User userFromSession = (User) session.getAttribute("user");
-        User managedUser = userService.getById(userFromSession.getId());
-        carService.createNewCar(createCarRequest, managedUser);
-        managedUser.setCars(carService.getAllCarsForUser(managedUser));
-        session.setAttribute("user", managedUser);
+
+        User user = userService.getById(authenticationMetadata.getUserId());
+        carService.createNewCar(createCarRequest, user);
 
         return "redirect:/user";
     }
 
     @DeleteMapping("/car/{id}/delete")
-    public String deleteCar(@PathVariable UUID id, HttpSession session) {
+    public String deleteCar(
+            @AuthenticationPrincipal AuthenticationMetadata authenticationMetadata,
+            @PathVariable UUID id) {
+
         carService.deleteById(id);
 
-        User userFromSession = (User) session.getAttribute("user");
-        User user = userService.getById(userFromSession.getId());
-        user.setCars(carService.getAllCarsForUser(user));
-        session.setAttribute("user", user);
-        
         return "redirect:/user";
     }
 }

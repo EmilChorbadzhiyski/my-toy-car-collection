@@ -61,31 +61,31 @@ public class PostController {
     }
 
     @PostMapping("/add")
-    public String createNewPost(@Valid CreateNewPost createNewPost, BindingResult bindingResult, HttpSession session) {
+    public String createNewPost(@AuthenticationPrincipal AuthenticationMetadata authenticationMetadata,
+                                @Valid CreateNewPost createNewPost, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             return "add-post";
         }
 
-        User userFromSession = (User) session.getAttribute("user");
-        User managedUser = userService.getById(userFromSession.getId());
-        postService.create(createNewPost, managedUser);
-        managedUser.setPosts(postService.getAllPostsForUser(managedUser));
-        session.setAttribute("user", managedUser);
+        User user = userService.getById(authenticationMetadata.getUserId());
+        postService.create(createNewPost, user);
+        user.setPosts(postService.getAllPostsForUser(user));
 
         return "redirect:/post";
     }
 
     @DeleteMapping("/{id}")
-    public String deletePost(@PathVariable UUID id,HttpSession session) {
+    public String deletePost(@AuthenticationPrincipal AuthenticationMetadata authenticationMetadata,
+                             @PathVariable UUID id) {
+        User user = userService.getById(authenticationMetadata.getUserId());
+
         postService.deletePostById(id);
-        User userFromSession = (User) session.getAttribute("user");
-        User user = userService.getById(userFromSession.getId());
         user.setPosts(postService.getAllPostsForUser(user));
-        session.setAttribute("user", user);
 
         return "redirect:/post";
     }
+
 
     @PostMapping("/{id}/visibility")
     public String sharePost(@PathVariable UUID id) {
@@ -98,7 +98,6 @@ public class PostController {
 
         User user = userService.getById(authenticationMetadata.getUserId());
         Post post = postService.findById(id);
-
         ModelAndView modelAndView = new ModelAndView("read-post");
         modelAndView.addObject("post", post);
         modelAndView.addObject("user", user);

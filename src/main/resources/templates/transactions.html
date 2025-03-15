@@ -10,7 +10,7 @@
 <body>
 <div class="transactions-container">
     <h1 class="transactions-title">Transaction Details</h1>
-
+    <a href="/user" class="btn btn-info mb-3 btn-back" style="color: black !important;">Go back to profile</a>
     <div th:if="${user.transactions.isEmpty()}">
         <p class="text-danger">No transactions available.</p>
     </div>
@@ -42,5 +42,6 @@
         </tbody>
     </table>
 </div>
+
 </body>
 </html>

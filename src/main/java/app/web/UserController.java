@@ -5,14 +5,10 @@ import app.user.model.User;
 import app.user.service.UserService;
 import app.web.dto.UserEditRequest;
 import app.web.mapper.DtoMapper;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.UUID;
@@ -55,10 +51,15 @@ public class UserController {
     }
 
     @PutMapping("/{id}/edit-profile")
-    public String updateUserProfile(@PathVariable UUID id, UserEditRequest userEditRequest, HttpSession session) {
+    public String updateUserProfile(@AuthenticationPrincipal AuthenticationMetadata authenticationMetadata,
+                                    @PathVariable UUID id,
+                                    @ModelAttribute UserEditRequest userEditRequest) {
+        UUID authenticatedUserId = authenticationMetadata.getUserId();
+
+        if (!authenticatedUserId.equals(id)) {
+            return "redirect:/user";
+        }
         userService.editUserDetails(id, userEditRequest);
-        User updatedUser = userService.getById(id);
-        session.setAttribute("user", updatedUser);
 
         return "redirect:/user";
     }
