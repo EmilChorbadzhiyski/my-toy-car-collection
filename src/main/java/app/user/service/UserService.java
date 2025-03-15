@@ -1,20 +1,22 @@
 package app.user.service;
 
 import app.exeptions.DomainException;
-import app.exeptions.LoginFailedException;
 import app.exeptions.PasswordValidationException;
 import app.exeptions.UsernameAlreadyExistException;
+import app.security.AuthenticationMetadata;
 import app.subscription.model.Subscription;
 import app.subscription.service.SubscriptionService;
 import app.user.model.User;
 import app.user.model.UserRole;
 import app.user.repository.UserRepository;
 import app.wallet.service.WalletService;
-import app.web.dto.LoginRequest;
 import app.web.dto.RegisterRequest;
 import app.web.dto.UserEditRequest;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +27,7 @@ import java.util.UUID;
 
 @Slf4j
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
@@ -48,9 +50,6 @@ public class UserService {
         if (optionUser.isPresent()) {
             throw new UsernameAlreadyExistException("Username [%s] already exists.".formatted(registerRequest.getUsername()));
         }
-//        Optional.of(registerRequest.getPassword())
-//                .filter(password -> password.length() >= 6)
-//                .orElseThrow(() -> new PasswordValidationException("Password must be at least 6 characters long."));
         if (registerRequest.getPassword().length() < 6) {
             throw new PasswordValidationException("Password must be at least 6 characters long.");
         }
@@ -63,7 +62,6 @@ public class UserService {
     public void editUserDetails(UUID userId, UserEditRequest userEditRequest) {
 
         User user = getById(userId);
-
         user.setFirstName(userEditRequest.getFirstName());
         user.setLastName(userEditRequest.getLastName());
         user.setEmail(userEditRequest.getEmail());
@@ -83,18 +81,6 @@ public class UserService {
                 .build();
     }
 
-    public User login(LoginRequest loginRequest) {
-        Optional<User> optionUser = userRepository.findByUsername(loginRequest.getUsername());
-        if (optionUser.isEmpty()) {
-            throw new LoginFailedException("Username or password are incorrect.");
-        }
-        User user = optionUser.get();
-        if (!passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
-            throw new LoginFailedException("Username or password are incorrect.");
-        }
-        return user;
-    }
-
     @Transactional
     public User getById(UUID id) {
         User user = userRepository.findById(id)
@@ -102,5 +88,12 @@ public class UserService {
         user.getCars().size();
 
         return user;
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUsername(username).orElseThrow(() -> new DomainException("User with this username does not exist."));
+
+        return new AuthenticationMetadata(user.getId(), username, user.getPassword(), user.getRole());
     }
 }

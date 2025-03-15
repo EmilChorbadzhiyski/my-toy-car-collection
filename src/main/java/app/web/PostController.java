@@ -2,12 +2,14 @@ package app.web;
 
 import app.post.model.Post;
 import app.post.service.PostService;
+import app.security.AuthenticationMetadata;
 import app.user.model.User;
 import app.user.service.UserService;
 import app.web.dto.CreateNewPost;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -30,8 +32,8 @@ public class PostController {
     }
 
     @GetMapping
-    public ModelAndView getPostPage(HttpSession session) {
-        User user = (User) session.getAttribute("user");
+    public ModelAndView getPostPage(@AuthenticationPrincipal AuthenticationMetadata authenticationMetadata) {
+        User user = userService.getById(authenticationMetadata.getUserId());
 
         if (user == null) {
             return new ModelAndView("redirect:/login");
@@ -47,10 +49,9 @@ public class PostController {
     }
 
     @GetMapping("/add")
-    public ModelAndView getNewPostPage(HttpSession session) {
+    public ModelAndView getNewPostPage(@AuthenticationPrincipal AuthenticationMetadata authenticationMetadata) {
 
-        User user = (User) session.getAttribute("user");
-
+        User user = userService.getById(authenticationMetadata.getUserId());
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("add-post");
         modelAndView.addObject("user", user);
@@ -93,9 +94,9 @@ public class PostController {
     }
 
     @GetMapping("/{id}")
-    public ModelAndView readPost(@PathVariable UUID id, HttpSession session) {
+    public ModelAndView readPost(@PathVariable UUID id, @AuthenticationPrincipal AuthenticationMetadata authenticationMetadata) {
 
-        User user = (User) session.getAttribute("user");
+        User user = userService.getById(authenticationMetadata.getUserId());
         Post post = postService.findById(id);
 
         ModelAndView modelAndView = new ModelAndView("read-post");

@@ -1,16 +1,15 @@
 package app.web;
 
-import app.user.model.User;
 import app.user.service.UserService;
 import app.web.dto.LoginRequest;
 import app.web.dto.RegisterRequest;
-import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -30,24 +29,17 @@ public class IndexController {
     }
 
     @GetMapping("/login")
-    public ModelAndView getLoginPage() {
+    public ModelAndView getLoginPage(@RequestParam(value = "error", required = false) String errorParam) {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login");
         modelAndView.addObject("loginRequest", new LoginRequest());
 
-        return modelAndView;
-    }
-
-    @PostMapping("/login")
-    public String login(@Valid LoginRequest loginRequest, BindingResult bindingResult, HttpSession session) {
-
-        if (bindingResult.hasErrors()) {
-            return "internal-server-error";
+        if (errorParam != null) {
+            modelAndView.addObject("errorMessage", "Incorrect username or password!");
         }
-        User loggedInUser = userService.login(loginRequest);
-        session.setAttribute("user", loggedInUser);
-        return "redirect:/user";
+
+        return modelAndView;
     }
 
     @GetMapping("/register")
@@ -80,11 +72,5 @@ public class IndexController {
     @GetMapping("/contacts")
     public String getContactsPage() {
         return "/contacts";
-    }
-
-    @GetMapping("/logout")
-    public String getLogoutPage(HttpSession session) {
-        session.invalidate();
-        return "redirect:/";
     }
 }

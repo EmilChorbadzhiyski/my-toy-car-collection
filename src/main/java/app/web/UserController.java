@@ -1,11 +1,13 @@
 package app.web;
 
+import app.security.AuthenticationMetadata;
 import app.user.model.User;
 import app.user.service.UserService;
 import app.web.dto.UserEditRequest;
 import app.web.mapper.DtoMapper;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,8 +29,8 @@ public class UserController {
     }
 
     @GetMapping
-    public ModelAndView getUserProfilePage(HttpSession session) {
-        User user = (User) session.getAttribute("user");
+    public ModelAndView getUserProfilePage(@AuthenticationPrincipal AuthenticationMetadata authenticationMetadata) {
+        User user = userService.getById(authenticationMetadata.getUserId());
 
         if (user == null) {
             return new ModelAndView("redirect:/login");

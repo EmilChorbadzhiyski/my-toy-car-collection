@@ -1,9 +1,11 @@
 package app.web;
 
+import app.security.AuthenticationMetadata;
 import app.user.model.User;
+import app.user.service.UserService;
 import app.wallet.model.Wallet;
 import app.wallet.service.WalletService;
-import jakarta.servlet.http.HttpSession;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,14 +21,16 @@ import java.util.Optional;
 public class WalletController {
 
     private final WalletService walletService;
+    private final UserService userService;
 
-    public WalletController(WalletService walletService) {
+    public WalletController(WalletService walletService, UserService userService) {
         this.walletService = walletService;
+        this.userService = userService;
     }
 
     @GetMapping
-    public ModelAndView getWalletsPage(HttpSession session) {
-        User user = (User) session.getAttribute("user");
+    public ModelAndView getWalletsPage(@AuthenticationPrincipal AuthenticationMetadata authenticationMetadata) {
+        User user = userService.getById(authenticationMetadata.getUserId());
         Optional<Wallet> wallet = walletService.getWalletByUser(user);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("wallet");
@@ -37,8 +41,8 @@ public class WalletController {
     }
 
     @PostMapping("/add-money")
-    public String addMoneyToWallet(HttpSession session, @RequestParam("amount") BigDecimal amount) {
-        User user = (User) session.getAttribute("user");
+    public String addMoneyToWallet(@AuthenticationPrincipal AuthenticationMetadata authenticationMetadata, @RequestParam("amount") BigDecimal amount) {
+        User user = userService.getById(authenticationMetadata.getUserId());
         Wallet wallet = walletService.getWalletByUser(user).orElseThrow(() -> new RuntimeException("Wallet not found"));
         walletService.addMoney(wallet, amount);
 
