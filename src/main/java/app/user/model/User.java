@@ -68,5 +68,4 @@ public class User {
 
     @OneToMany(mappedBy = "owner",fetch = FetchType.EAGER)
     private List<Post> posts ;
-
 }

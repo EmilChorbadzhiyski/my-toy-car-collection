@@ -59,6 +59,7 @@ public class UserService implements UserDetailsService {
         walletService.createNewWallet(user);
     }
 
+    @Transactional
     public void editUserDetails(UUID userId, UserEditRequest userEditRequest) {
 
         User user = getById(userId);
@@ -81,13 +82,8 @@ public class UserService implements UserDetailsService {
                 .build();
     }
 
-    @Transactional
     public User getById(UUID id) {
-        User user = userRepository.findById(id)
-                .orElseThrow(() -> new DomainException("User with id [%s] does not exist.".formatted(id)));
-        user.getCars().size();
-
-        return user;
+        return userRepository.findById(id).orElseThrow(() -> new DomainException("User with id [%s] does not exist.".formatted(id)));
     }
 
     @Override

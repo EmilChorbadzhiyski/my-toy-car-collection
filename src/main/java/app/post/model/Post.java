@@ -15,7 +15,7 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Post {
+public class    Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
