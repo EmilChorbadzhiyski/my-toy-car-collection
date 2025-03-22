@@ -1,4 +1,4 @@
-/* General Reset */
+
 body, h1, p {
     margin: 0;
     padding: 0;
@@ -14,7 +14,6 @@ body {
     text-align: center;
 }
 
-/* Container for the error message */
 .container {
     background: rgba(0, 0, 0, 0.8);
     padding: 30px;
@@ -24,20 +23,17 @@ body {
     width: 100%;
 }
 
-/* Title for the error */
 h1 {
     font-size: 24px;
     color: white;
     margin-bottom: 15px;
 }
 
-/* Paragraph text for additional info */
 p {
     font-size: 16px;
     color: whitesmoke;
 }
 
-/* Error details section */
 .error-details {
     margin-top: 20px;
     padding: 10px;
@@ -46,7 +42,6 @@ p {
     border-radius: 5px;
 }
 
-/* Back Button Styling */
 .back-button {
     display: inline-block;
     margin-top: 20px;
@@ -58,12 +53,10 @@ p {
     transition: background 0.3s ease;
 }
 
-/* Hover effect for the back button */
 .back-button:hover {
     background: darkgreen;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .container {
         padding: 20px;

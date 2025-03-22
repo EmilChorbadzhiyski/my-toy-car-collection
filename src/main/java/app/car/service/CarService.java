@@ -83,7 +83,6 @@ public class CarService {
                         LocalDateTime.now()
                 ), buyer
         );
-
     }
 
     public void deleteById(UUID id) {

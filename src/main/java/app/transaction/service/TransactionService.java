@@ -20,8 +20,7 @@ public class TransactionService {
         this.transactionRepository = transactionRepository;
     }
 
-
-    public void createNewTransaction(CreateTransactionRequest createTransaction, User user){
+    public void createNewTransaction(CreateTransactionRequest createTransaction, User user) {
 
         Transaction transaction = Transaction.builder()
                 .owner(user)
@@ -46,5 +45,4 @@ public class TransactionService {
                 new IllegalArgumentException("Transaction not found with id: " + transactionId));
         transactionRepository.delete(transaction);
     }
-
 }

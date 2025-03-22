@@ -1,6 +1,7 @@
 package app.car.model;
 
 import app.user.model.User;
+
 import jakarta.persistence.*;
 import lombok.*;
 

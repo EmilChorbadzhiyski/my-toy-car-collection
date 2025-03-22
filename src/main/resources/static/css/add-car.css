@@ -27,7 +27,7 @@ main {
     background-color: rgba(0, 0, 0, 0.6);
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    padding: 15px; /* Reduced padding */
+    padding: 15px;
     flex: 1;
 }
 

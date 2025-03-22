@@ -1,7 +1,6 @@
 package app.wallet.service;
 
 import app.exeptions.DomainException;
-import app.transaction.repository.TransactionRepository;
 import app.user.model.User;
 import app.wallet.model.Wallet;
 import app.wallet.repository.WalletRepository;
@@ -20,7 +19,7 @@ public class WalletService {
     private final WalletRepository walletRepository;
 
     @Autowired
-    public WalletService(WalletRepository walletRepository,TransactionRepository transactionRepository) {
+    public WalletService(WalletRepository walletRepository) {
         this.walletRepository = walletRepository;
     }
 
@@ -30,8 +29,7 @@ public class WalletService {
             throw new DomainException("Wallet already exists for the user.");
         }
         Wallet wallet = walletRepository.save(initializeWallet(user));
-        log.info("Successfully create new wallet with id [%s] and balance [%.2f].".formatted(wallet.getId(), wallet.getBalance()));
-
+//        log.info("Successfully create new wallet with id [%s] and balance [%.2f].".formatted(wallet.getId(), wallet.getBalance()));
         return wallet;
     }
 
@@ -42,7 +40,6 @@ public class WalletService {
                 .createdOn(LocalDateTime.now())
                 .updatedOn(LocalDateTime.now()).build();
     }
-
 
     public void decreaseBalance(Wallet wallet, BigDecimal carPrice) {
         if (wallet.getBalance().compareTo(carPrice) < 0) {

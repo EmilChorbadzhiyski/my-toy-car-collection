@@ -11,5 +11,4 @@ public class SubscriptionController {
     public String getSubscriptionPage() {
         return "/subscription";
     }
-
 }

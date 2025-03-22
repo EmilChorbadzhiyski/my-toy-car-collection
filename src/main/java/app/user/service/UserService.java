@@ -71,7 +71,7 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
     }
 
-    private User initializeUser(RegisterRequest registerRequest) {
+    public User initializeUser(RegisterRequest registerRequest) {
 
         return User.builder().username(registerRequest.getUsername())
                 .password(passwordEncoder.encode(registerRequest.getPassword()))

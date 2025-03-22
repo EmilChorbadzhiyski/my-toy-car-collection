@@ -11,7 +11,8 @@
     <div class="wrapper wide">
         <nav class="main-nav">
             <ul>
-                <li><a th:href="@{/shop}">Shop</a></li>
+                <li><a th:href="@{/shop}">Cars</a></li>
+                <li><a th:href="@{/accessories}">Accessories</a></li>
                 <li><a th:href="@{/user}">My Profile</a></li>
                 <li><a th:href="@{/post}">Blog</a></li>
                 <li><a th:href="@{/subscription}">Subscriptions</a></li>
@@ -23,30 +24,30 @@
 </header>
 
 <main>
-    <section class="section section-banner">
-        <div class="wrapper">
-            <h2>Welcome to Toy Car Collection App</h2>
-            <section class="section section-about">
-                <div class="wrapper">
-                    <header>
-                        <h3>ABOUT US</h3>
-                        <p>Welcome to Toy Car Collection App, the ultimate app for toy car enthusiasts! Whether you're a lifelong collector or just starting your journey, our app is designed to help you organize, showcase, and grow your toy car collection with ease.
+<!--    <section class="section section-banner">-->
+<!--        <div class="wrapper">-->
+<!--            <h2>Welcome to Toy Car Collection App</h2>-->
+<!--            <section class="section section-about">-->
+<!--                <div class="wrapper">-->
+<!--                    <header>-->
+<!--                        <h3>ABOUT US</h3>-->
+<!--                        <p>Welcome to Toy Car Collection App, the ultimate app for toy car enthusiasts! Whether you're a lifelong collector or just starting your journey, our app is designed to help you organize, showcase, and grow your toy car collection with ease.-->
 
-                            Our mission is to create a vibrant community where collectors can track their cars, discover rare models, and share their passion with others. With powerful features like inventory management, wishlist creation, and collection insights, Toy Car Collection App makes collecting more fun and organized than ever before.
+<!--                            Our mission is to create a vibrant community where collectors can track their cars, discover rare models, and share their passion with others. With powerful features like inventory management, wishlist creation, and collection insights, Toy Car Collection App makes collecting more fun and organized than ever before.-->
 
-                            Driven by a love for miniature cars and the stories they hold, we're here to celebrate every car in your collection — from vintage classics to the latest limited editions.
-                        </p>
-                    </header>
-                    <p>Join us on this journey and let’s build the ultimate toy car collection, one model at a time!</p>
-                </div>
-            </section>
-        </div>
-    </section>
+<!--                            Driven by a love for miniature cars and the stories they hold, we're here to celebrate every car in your collection — from vintage classics to the latest limited editions.-->
+<!--                        </p>-->
+<!--                    </header>-->
+<!--                    <p>Join us on this journey and let’s build the ultimate toy car collection, one model at a time!</p>-->
+<!--                </div>-->
+<!--            </section>-->
+<!--        </div>-->
+<!--    </section>-->
 
     <section class="section section-catalog">
         <div class="wrapper">
             <header>
-                <h3>Catalog</h3>
+                <h3>Car catalog</h3>
                 <p>Choose a car from the selection.</p>
             </header>
             <div class="flex-columns c4" th:if="${#lists.size(cars) > 0}">

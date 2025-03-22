@@ -47,5 +47,4 @@ public class CreateCarRequest {
 
     @NotNull(message = "Please enter price!")
     private BigDecimal price;
-
 }

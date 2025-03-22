@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Accessories</title>
+    <link rel="stylesheet" th:href="@{/css/accessories.css}">
+</head>
+<body>
+
+<div class="page-container">
+    <header class="section site-header">
+        <div class="wrapper wide">
+            <nav class="main-nav">
+                <ul>
+                    <li><a th:href="@{/shop}">Cars</a></li>
+                    <li><a th:href="@{/accessories}">Accessories</a></li>
+                    <li><a th:href="@{/user}">My Profile</a></li>
+                    <li><a th:href="@{/post}">Blog</a></li>
+                    <li><a th:href="@{/subscription}">Subscriptions</a></li>
+                    <li><a th:href="@{/privacy-policy}">Privacy Policy</a></li>
+                    <li><a th:href="@{/contacts}">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="section section-catalog">
+            <div class="wrapper">
+                <header>
+                    <h3>Accessories Catalog</h3>
+                    <p>Choose an accessory from the selection.</p>
+
+                    <a th:href="@{/accessories/add}" class="add-accessory-button">+ Add Accessory</a>
+                </header>
+
+                <div class="flex-columns c4">
+                    <div class="accessory-card" th:each="accessory : ${accessories}">
+                        <div class="accessory-image-container">
+                            <img th:src="${accessory.imageUrl}" class="accessory-image" alt="Accessory Image">
+                        </div>
+
+                        <div class="accessory-info">
+                            <h3 th:text="${accessory.accessoryName}"></h3>
+                            <p th:text="${accessory.description}"></p>
+                            <p><strong>Price:</strong> $<span th:text="${accessory.price}"></span></p>
+                            <button class="buy-button">Buy now</button>
+                            <a th:href="@{/accessories/delete/{id}(id=${accessory.getId()})}" th:data-method="DELETE">Delete</a>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="no-accessories-message" th:if="${#lists.isEmpty(accessories)}">No accessories available.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="section site-footer">
+        <div class="wrapper">
+            <p>&copy; 2025 Toy Car Collection. All Rights Reserved.</p>
+        </div>
+    </footer>
+</div>
+
+<style>
+    .add-accessory-button {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+    .add-accessory-button:hover {
+        background-color: #45a049;
+    }
+</style>
+
+</body>
+</html>

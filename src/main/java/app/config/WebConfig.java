@@ -30,6 +30,7 @@ public class WebConfig {
                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                         .logoutSuccessUrl("/")
                         .permitAll()
+
                 );
 
         return http.build();
