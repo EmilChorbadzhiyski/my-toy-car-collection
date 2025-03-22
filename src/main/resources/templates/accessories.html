@@ -45,7 +45,8 @@
                             <p th:text="${accessory.description}"></p>
                             <p><strong>Price:</strong> $<span th:text="${accessory.price}"></span></p>
                             <button class="buy-button">Buy now</button>
-                            <a th:href="@{/accessories/delete/{id}(id=${accessory.getId()})}" th:data-method="DELETE">Delete</a>
+                            <a th:href="@{/accessories/delete/{id}(id=${accessory.getId()})}" class="delete-button"
+                               th:data-method="DELETE">Delete</a>
                         </div>
                     </div>
                 </div>
@@ -61,23 +62,5 @@
         </div>
     </footer>
 </div>
-
-<style>
-    .add-accessory-button {
-        display: inline-block;
-        margin-bottom: 20px;
-        padding: 10px 20px;
-        background-color: #4CAF50;
-        color: white;
-        text-decoration: none;
-        border-radius: 4px;
-        font-weight: bold;
-        transition: background-color 0.3s ease;
-    }
-    .add-accessory-button:hover {
-        background-color: #45a049;
-    }
-</style>
-
 </body>
 </html>
