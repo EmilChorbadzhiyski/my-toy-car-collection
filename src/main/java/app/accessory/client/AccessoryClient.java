@@ -2,6 +2,7 @@ package app.accessory.client;
 
 import app.web.dto.AccessoryCreateRequest;
 import app.web.dto.AccessoryResponse;
+import app.web.dto.AccessoryEditRequest;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,4 +24,7 @@ public interface AccessoryClient {
 
     @DeleteMapping("/{id}")
     void deleteAccessory(@PathVariable UUID id);
+
+    @PutMapping("/{id}")
+    void editAccessory(@PathVariable UUID id, @RequestBody AccessoryEditRequest updateRequest);
 }

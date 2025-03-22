@@ -2,7 +2,6 @@ package app.web.dto;
 
 import lombok.*;
 
-import java.math.BigDecimal;
 import java.util.UUID;
 
 @Data
@@ -11,10 +10,10 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 @Setter
-public class AccessoryCreateRequest {
-    private UUID userId;
+public class AccessoryEditRequest {
+    private UUID id;
     private String accessoryName;
     private String description;
-    private BigDecimal price;
     private String imageUrl;
+    private double price;
 }

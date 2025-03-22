@@ -3,6 +3,7 @@ package app.accessory.service;
 import app.accessory.client.AccessoryClient;
 import app.web.dto.AccessoryCreateRequest;
 import app.web.dto.AccessoryResponse;
+import app.web.dto.AccessoryEditRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

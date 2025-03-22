@@ -29,11 +29,10 @@ public class WalletService {
             throw new DomainException("Wallet already exists for the user.");
         }
         Wallet wallet = walletRepository.save(initializeWallet(user));
-//        log.info("Successfully create new wallet with id [%s] and balance [%.2f].".formatted(wallet.getId(), wallet.getBalance()));
         return wallet;
     }
 
-    private Wallet initializeWallet(User user) {
+    public Wallet initializeWallet(User user) {
         return Wallet.builder()
                 .owner(user)
                 .balance(new BigDecimal("30.00"))

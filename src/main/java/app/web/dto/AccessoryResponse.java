@@ -1,11 +1,16 @@
 package app.web.dto;
 
-import lombok.Data;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.UUID;
 
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class AccessoryResponse {
     private UUID id;
     private UUID userId;

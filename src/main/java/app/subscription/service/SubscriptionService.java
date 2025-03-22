@@ -27,14 +27,11 @@ public class SubscriptionService {
     public Subscription createDefaultSubscription(User user) {
         Subscription subscription = subscriptionRepository.save(initializeSubscription(user));
         log.info("Successfully create new subscription with id [%s] and type [%s].".formatted(subscription.getId(), subscription.getType()));
-
         return subscription;
     }
 
     private Subscription initializeSubscription(User user) {
-
         LocalDateTime now = LocalDateTime.now();
-
         return Subscription.builder()
                 .owner(user)
                 .type(SubscriptionType.FREE)
