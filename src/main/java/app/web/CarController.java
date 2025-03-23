@@ -5,7 +5,6 @@ import app.security.AuthenticationMetadata;
 import app.user.model.User;
 import app.user.service.UserService;
 import app.web.dto.CreateCarRequest;
-import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

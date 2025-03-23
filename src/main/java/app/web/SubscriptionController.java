@@ -9,6 +9,6 @@ public class SubscriptionController {
 
     @GetMapping("/subscription")
     public String getSubscriptionPage() {
-        return "/subscription";
+        return "subscription";
     }
 }

@@ -49,4 +49,5 @@ public class Car {
 
     @Column(nullable = false)
     private BigDecimal price;
+
 }

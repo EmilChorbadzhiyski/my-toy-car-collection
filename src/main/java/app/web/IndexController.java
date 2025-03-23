@@ -68,9 +68,8 @@ public class IndexController {
         return "privacy-policy";
     }
 
-
     @GetMapping("/contacts")
     public String getContactsPage() {
-        return "/contacts";
+        return "contacts";
     }
 }
