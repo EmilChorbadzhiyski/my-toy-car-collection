@@ -18,10 +18,11 @@ body {
 
 .container {
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.8);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    width: 800px;
 }
 
 h1 {

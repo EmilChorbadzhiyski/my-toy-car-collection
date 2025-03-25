@@ -57,6 +57,8 @@ public class CarService {
         Car car = carRepository.findById(carId)
                 .orElseThrow(() -> new DomainException("Car with ID [%s] not found.".formatted(carId)));
 
+        User seller = car.getOwner();
+
         if (car.getOwner().equals(buyer)) {
             throw new DomainException("You cannot buy your own car.");
         }
@@ -76,8 +78,8 @@ public class CarService {
 
         transactionService.createNewTransaction(
                 new CreateTransactionRequest(
-                        car.getOwner().getId(),
-                        car.getOwner().getUsername(),
+                        car.getId(),
+                        seller.getUsername(),
                         buyer.getUsername(),
                         car.getPrice(),
                         LocalDateTime.now()

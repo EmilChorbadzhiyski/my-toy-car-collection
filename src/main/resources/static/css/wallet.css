@@ -12,6 +12,7 @@ body {
     justify-content: center;
     min-height: 100vh;
     background: url('../images/home-page.jpg') no-repeat center center/cover;
+    background-size: cover;
 }
 
 .wallet-card {
@@ -22,6 +23,12 @@ body {
     width: 400px;
     color: white;
     margin-bottom: 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+.wallet-card:hover {
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    transform: translateY(-5px);
 }
 
 .wallet-header {
@@ -29,6 +36,8 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 15px;
 }
 
 .wallet-title {
@@ -56,6 +65,12 @@ body {
     width: 400px;
     padding: 20px;
     margin-top: 20px;
+    transition: all 0.3s ease;
+}
+
+.wallet-buttons:hover {
+    background: rgba(0, 0, 0, 1);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
 }
 
 .button-container {
@@ -74,6 +89,15 @@ input[type="number"] {
     border: none;
     box-sizing: border-box;
     margin-bottom: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    transition: all 0.3s ease;
+}
+
+input[type="number"]:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 2px solid #10b981;
+    outline: none;
 }
 
 .btn {
@@ -97,6 +121,7 @@ input[type="number"] {
 
 .btn-info:hover {
     background-color: darkgreen;
+    transform: scale(1.05);
 }
 
 .btn-back {
@@ -105,8 +130,37 @@ input[type="number"] {
     width: auto;
     padding: 8px 16px;
     font-size: 14px;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.3s ease;
 }
 
 .btn-back:hover {
     background-color: #d1d5db;
+    color: #000;
+    transform: scale(1.05);
+}
+
+.btn-back:active {
+    transform: scale(0.98);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-danger {
+    background-color: #ef4444;
+    color: white;
+    padding: 8px 16px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.btn-danger:hover {
+    background-color: #dc2626;
+    transform: scale(1.05);
+}
+
+.btn-danger:active {
+    transform: scale(0.98);
 }

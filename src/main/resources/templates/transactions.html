@@ -18,20 +18,20 @@
     <table class="transactions-table" th:if="${not #lists.isEmpty(user.transactions)}">
         <thead>
         <tr>
-            <th>Owner</th>
             <th>Sender</th>
             <th>Receiver</th>
             <th>Amount</th>
             <th>Created On</th>
+            <th>Status</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="transaction : ${user.transactions}">
-            <td th:text="${transaction.owner.username}"></td>
-            <td th:text="${transaction.sender}"></td>
             <td th:text="${transaction.receiver}"></td>
+            <td th:text="${transaction.sender}"></td>
             <td th:text="'$' + ${transaction.amount}"></td>
             <td th:text="${#temporals.format(transaction.createdOn, 'yyyy-MM-dd HH:mm')}"></td>
+            <td style="color: green; font-weight: bold;">SUCCESSFUL</td>
             <td>
                 <form th:action="@{/transactions/delete/{id}(id=${transaction.id})}" method="post"
                       style="display:inline;">
