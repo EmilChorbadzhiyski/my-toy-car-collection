@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" th:href="@{/css/admin-users.css}">
+</head>
+<body>
+<div class="admin-container">
+    <h1 class="admin-title">Manage User Roles</h1>
+    <a href="javascript:history.back()" class="btn-back">⬅ Back to user profile</a>
+    <div class="admin-table-wrapper">
+        <table class="admin-table">
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Current Role</th>
+                <th>Change Role</th>
+            </tr>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.email}"></td>
+                <td th:text="${user.role}"></td>
+                <td>
+                    <form method="post" th:action="@{/admin/change-role(id=${user.id})}">
+                        <label>
+                            <select name="role">
+                                <option value="USER">User</option>
+                                <option value="ADMIN">Admin</option>
+                            </select>
+                        </label>
+                        <button type="submit">Change Role</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<footer class="section section-footer">
+    <div class="wrapper">
+        <p>© 2025 My Toy Car Collection. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -62,6 +62,9 @@
             <a th:href="@{/logout}">
                 <button type="button">Log Out</button>
             </a>
+            <a th:href="@{/admin}" th:if="${user.role.name() == 'ADMIN'}">
+                <button style="background-color: red; color: white;">Admin Panel</button>
+            </a>
         </div>
     </section>
 

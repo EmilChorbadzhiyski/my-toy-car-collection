@@ -92,4 +92,16 @@ public class UserService implements UserDetailsService {
 
         return new AuthenticationMetadata(user.getId(), username, user.getPassword(), user.getRole());
     }
+
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    @Transactional
+    public void changeUserRole(UUID userId, UserRole role) {
+        User user = getById(userId);
+        user.setRole(role);
+        user.setUpdatedOn(LocalDateTime.now());
+        userRepository.save(user);
+    }
 }
