@@ -5,58 +5,60 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     background: url('../images/home-page.jpg') no-repeat center center/cover;
     color: #ffffff;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    text-align: center;
     overflow: hidden;
-    position: relative;
 }
 
 .container {
-    text-align: center;
-    background-color: rgba(0, 0, 0, 0.8);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    width: 800px;
+    background-color: rgba(0, 0, 0, 0.85);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+    width: 90%;
+    max-width: 700px;
+    transition: transform 0.3s ease;
+}
+
+.container:hover {
+    transform: scale(1.02);
 }
 
 h1 {
-    margin-top: 20px;
     font-size: 2rem;
+    margin-bottom: 15px;
+    font-weight: 600;
 }
 
 p {
-    margin-top: 10px;
     font-size: 1rem;
-    color: #cccccc;
+    color: #eeeeee;
+    margin-bottom: 15px;
+    line-height: 1.5;
 }
 
 .button-container {
     margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
 }
 
-.button {
-    display: inline-block;
-    padding: 12px 24px;
-    font-size: 1rem;
-    font-weight: bold;
-    color: #ffffff;
-    background-color: rgba(50, 50, 50, 0.7);
-    text-decoration: none;
-    border-radius: 30px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease;
+.app-store {
+    width: 140px;
+    transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-.button:hover {
-    background-color: rgba(60, 60, 60, 0.9);
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+.app-store:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.8));
 }
 
 .top-buttons {
@@ -64,55 +66,33 @@ p {
     top: 20px;
     right: 20px;
     display: flex;
-    gap: 10px;
+    gap: 15px;
 }
 
-.top-buttons a {
+.button {
     display: inline-block;
     padding: 10px 20px;
     font-size: 0.9rem;
     font-weight: bold;
     color: #ffffff;
-    background-color: rgba(50, 50, 50, 0.7);
+    background: linear-gradient(135deg, #444, #222);
     text-decoration: none;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
 }
 
-.top-buttons a:hover {
-    background-color: rgba(60, 60, 60, 0.9);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+.button:hover {
+    background: linear-gradient(135deg, #555, #333);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
 }
 
 .footer {
     position: absolute;
     bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
     text-align: center;
-}
-
-.footer p {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     color: #cccccc;
-}
-
-.footer a {
-    display: inline-block;
-    padding: 8px 18px;
-    font-size: 0.8rem;
-    color: #ffffff;
-    background-color: rgba(50, 50, 50, 0.7);
-    text-decoration: none;
-    border-radius: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease;
-}
-
-.footer a:hover {
-    background-color: rgba(60, 60, 60, 0.9);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    font-weight: 300;
 }

@@ -25,7 +25,7 @@ main {
     width: 100%;
     max-width: 400px;
     margin: 100px auto;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.8);
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -77,14 +77,14 @@ input {
 
 
 input:focus {
-    border-color: #007BFF;
+    border-color: green;
 }
 
 button {
     padding: 10px;
     font-size: 16px;
     margin-top: 20px;
-    background-color: #007BFF;
+    background-color: green;
     color: white;
     border: none;
     border-radius: 4px;
@@ -93,11 +93,11 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: darkgreen;
 }
 
 button:active {
-    background-color: #004085;
+    background-color: green;
 }
 
 .form-already {
@@ -108,7 +108,7 @@ button:active {
 }
 
 .form-already a {
-    color: #007BFF;
+    color: green;
     text-decoration: none;
 }
 
@@ -128,4 +128,29 @@ button:active {
     color: red;
     font-size: 14px;
     margin-bottom: 10px;
+}
+
+select {
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    outline: none;
+    transition: border-color 0.3s;
+    background-color: #fff;
+    color: #333;
+}
+
+select:focus {
+    border-color: #00aaff;
+}
+
+select option {
+    padding: 10px;
+    background-color: #fff;
+}
+
+select option:disabled {
+    color: #aaa;
 }

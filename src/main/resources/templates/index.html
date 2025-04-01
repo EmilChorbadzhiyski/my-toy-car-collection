@@ -3,27 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
+    <title>Home | Toy Car Collection</title>
     <link rel="stylesheet" href="/css/index.css">
 </head>
 <body>
-<div class="top-buttons">
-    <a th:href="@{/login}" class="">Login</a>
-    <a th:href="@{/register}" class="">Register</a>
-</div>
-<div class="container">
-    <h1>Welcome to the Toy Car Collection App</h1>
+<header>
+    <nav class="top-buttons">
+        <a th:href="@{/login}" class="button">Login</a>
+        <a th:href="@{/register}" class="button">Register</a>
+    </nav>
+</header>
 
-    <p>Welcome to Toy Car Collection App, the ultimate app for toy car enthusiasts! Whether you're a lifelong collector
-        or just starting your journey, our app is designed to help you organize, showcase, and grow your toy car
-        collection with ease.
-        Driven by a love for miniature cars and the stories they hold, we're here to celebrate every car in your
-        collection — from vintage classics to the latest limited editions.
+<main class="container">
+    <h1>Welcome to the Toy Car Collection App</h1>
+    <p>
+        The ultimate app for toy car enthusiasts! Whether you're a lifelong collector or just starting your journey, our app helps you
+        organize, showcase, and grow your toy car collection effortlessly.
     </p>
-    <p>Join us on this journey and let’s build the ultimate toy car collection, one model at a time!</p>
-</div>
-<div class="footer">
-    <p>© 2025 My Toy Car Collection. All rights reserved.</p>
-</div>
+    <p>
+        Celebrate every model in your collection — from vintage classics to the latest limited editions. Join us and build the ultimate toy car collection, one model at a time!
+    </p>
+    <div class="button-container">
+        <a href="https://play.google.com/store" target="_blank">
+            <img src="../images/google-play.png" alt="Get it on Google Play" class="app-store">
+        </a>
+        <a href="https://www.apple.com/app-store/" target="_blank">
+            <img src="../images/app-store.png" alt="Download on the App Store" class="app-store">
+        </a>
+    </div>
+</main>
+
+<footer class="footer">
+    <p>&copy; 2025 My Toy Car Collection. All rights reserved.</p>
+</footer>
 </body>
 </html>
