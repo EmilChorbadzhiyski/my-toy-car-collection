@@ -25,8 +25,15 @@ Upon successful registration, users are redirected to login.
 This page allows users to view and manage their entire collection of toy cars. Each car is displayed with detailed information such as the brand, model, year, and unique features. Users can add new cars, edit details, or remove items from their collection.
 ![Car Collection](app-screenshots/car-collection.png)
 
-### Car Collection Page  
+### Car Catalog page  
+The Car Catalog Page is a comprehensive overview of all the toy cars in the app. Users can easily browse through various models, filter by brand, year, and type, and get detailed information about each car. This page serves as a **virtual showroom** for toy car collectors to explore their options and add new cars to their collection.
 
+![Car Collection](app-screenshots/car-catalog.png)
+
+### Forum 
+The is a vibrant community space where users can **post updates, share experiences, and interact** with fellow collectors. Users can create posts about their collections, ask questions, offer advice, and stay engaged with the toy car community. It’s a great place to exchange tips, discover new trends, and connect with other enthusiasts.
+
+![Car Collection](app-screenshots/post-page.png)
 
 ## 🌟 Why You'll Love It!
 
