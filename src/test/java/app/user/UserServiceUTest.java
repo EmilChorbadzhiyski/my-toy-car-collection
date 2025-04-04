@@ -154,4 +154,33 @@ public class UserServiceUTest {
         verify(walletService, never()).createNewWallet(any(User.class));
     }
 
+    @Test
+    void givenValidUserIdAndRole_whenChangeUserRole() {
+        UUID userId = UUID.randomUUID();
+        User user = new User();
+        user.setId(userId);
+        user.setRole(UserRole.USER);
+        user.setUpdatedOn(LocalDateTime.now().minusDays(1));
+
+        when(userRepository.findById(userId)).thenReturn(Optional.of(user));
+        when(userRepository.save(any(User.class))).thenReturn(user);
+        UserRole newRole = UserRole.ADMIN;
+        userService.changeUserRole(userId, newRole);
+        verify(userRepository, times(1)).findById(userId);
+        verify(userRepository, times(1)).save(user);
+        assertEquals(newRole, user.getRole());
+        assertTrue(user.getUpdatedOn().isBefore(LocalDateTime.now().plusSeconds(1)));
+    }
+
+    @Test
+    void changeUserRoleGivenWhenNonExistentId_thenExceptionIsThrown() {
+        UUID userId = UUID.randomUUID();
+        when(userRepository.findById(userId)).thenReturn(Optional.empty());
+
+        DomainException exception = assertThrows(DomainException.class, () -> userService.changeUserRole(userId, UserRole.ADMIN));
+        assertEquals("User with id [" + userId + "] does not exist.", exception.getMessage());
+
+        verify(userRepository, times(1)).findById(userId);
+        verify(userRepository, never()).save(any(User.class));
+    }
 }
